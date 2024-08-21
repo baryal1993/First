@@ -8,8 +8,9 @@ wrds <- dbConnect(Postgres(),
                   sslmode='require',
                   user='biaryal')
 
-res<-dbSendQuery(wrds,"select cikcode, boardid, annualreportdate, numberdirectors, genderratio, nationalitymix from boardex.boardex_na
-                 where fyear between '2000' and '2020'")
-data<-dbFetch(res, n=-1)
+res<-dbSendQuery(wrds,"select cikcode, boardid, annualreportdate, numberdirectors, genderratio, nationalitymix 
+                  from boardex.na_wrds_org_summary
+                 where annualreportdate between '2000-01-01' and '2020-12-31' ")
+data1<-dbFetch(res, n=-1)
 dbClearResult(res)
-data
+data1
